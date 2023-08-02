@@ -43,7 +43,7 @@ export function SignUp() {
         </div>
 
         <form className="flex flex-col items-center gap-6">
-          <Input placeholder={'email@explorer.com'} />
+          <Input placeholder={'email@explorer.com'} type={'email'} />
 
           <Button
             className="self-stretch rounded-md bg-neutral-50 py-2"
