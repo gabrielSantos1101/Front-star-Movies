@@ -30,7 +30,7 @@ export function SignIn() {
 
       <div className="relative flex shrink grow basis-0 flex-col items-center justify-center gap-6 self-stretch bg-BG-900">
         <Button
-          className="absolute right-12 top-10 rounded-md border border-slate-800 bg-zinc-950 px-5 py-2 text-neutral-50"
+          className="absolute right-12 top-10 rounded-md border-gray-200 bg-black px-5 py-2 text-neutral-50"
           title={'Cadastre-se'}
         />
 

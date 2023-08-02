@@ -10,7 +10,7 @@ export function Textarea({ placeholder, ...rest }) {
 
   return (
     <textarea
-      className="mt-4 max-h-96 min-h-[20rem] w-full resize-none overflow-y-auto rounded-xl border border-solid border-mirage-950  bg-BG-900 p-5 text-white"
+      className="mt-4 max-h-60 min-h-[20rem] w-full resize-none overflow-y-auto rounded-xl border border-solid border-mirage-950  bg-BG-900 p-5 text-gray-400"
       onInput={(e) => autoresize(e)}
       value={text}
       onChange={(e) => setText(e.target.value)}
