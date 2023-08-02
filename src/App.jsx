@@ -1,11 +1,9 @@
-import { Input } from './components/Input'
-import { Textarea } from './components/Textarea'
+import { SignUp } from "./pages/SignUp"
 
 function App() {
   return (
     <>
-      <Textarea placeholder={'digite aqui'} />
-      <Input Type="email" placeholder="E-mail" />
+      <SignUp />
     </>
   )
 }

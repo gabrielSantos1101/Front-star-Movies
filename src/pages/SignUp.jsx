@@ -4,7 +4,7 @@ import { Input } from "../components/Input";
 
 
 
-export function SignIn() {
+export function SignUp() {
     return (
         <div className="w-full h-full flex">
             <div className="grow shrink basis-0 self-stretch p-10 bg-BG-800 border-zinc-800 flex-col justify-between flex">
@@ -18,22 +18,23 @@ export function SignIn() {
             </div>
 
             <div className="relative grow shrink basis-0 self-stretch bg-BG_900 flex-col justify-center items-center gap-6 flex">
-                <Button className="absolute top-10 right-12 py-2 px-5 bg-zinc-950 rounded-md border border-slate-800 text-neutral-50" title={"Cadastre-se"} />
-               
+                <Button className="absolute top-10 right-12 py-2 px-5 bg-zinc-950 rounded-md border border-slate-800 text-neutral-50" title={"Login"} />
+
                 <div className="py-2 text-center">
-                    <h1 className="text-neutral-50 text-2xl font-semibold leading-loose">Faça o login</h1>
-                    <p className="text-zinc-400 text-sm font-normal leading-tight">Digite o seu e-mail abaixo para acessar o Star Movies 🍿</p>
+                    <h1 className="text-neutral-50 text-2xl font-semibold leading-loose">Crie uma conta</h1>
+                    <p className="text-zinc-400 text-sm font-normal leading-tight">Digite o seu e-mail abaixo para criar a sua conta</p>
                 </div>
-                
+
                 <form className="flex-col items-center gap-6 flex">
-                    <div className="self-stretch flex-col items-center gap-4 flex">
-                        <Input placeholder={"email@explorer.com"} />
+                    <Input placeholder={"email@explorer.com"} />
 
-                        <Input placeholder={"senha"} />
+                    <Button className="self-stretch bg-neutral-50 py-2 rounded-md" title={"Acessar com e-mail"} />
 
-                        <Button className="self-stretch bg-neutral-50 py-2 rounded-md" title={"Acessar com e-mail"} />
-
+                    <div className="text-zinc-400 text-sm font-normal leading-tight flex gap-2">
+                        <input type="checkbox" />
+                        Concordo com os Termos e Políticas de privacidade.
                     </div>
+
                 </form>
             </div>
         </div>
