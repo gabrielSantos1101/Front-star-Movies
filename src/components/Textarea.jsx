@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-export function Textarea({ placeholder, value = '', ...rest }) {
+export function Textarea({ placeholder, ...rest }) {
   const [text, setText] = useState('')
 
   function autoresize(e) {
@@ -10,7 +10,7 @@ export function Textarea({ placeholder, value = '', ...rest }) {
 
   return (
     <textarea
-      className="p-5 mt-4 bg-BG-900 border text-white border-mirage-950 border-solid resize-none w-full overflow-y-auto min-h-36  min-h-36 max-h-96 rounded-xl"
+      className="mt-4 max-h-96 min-h-[20rem] w-full resize-none overflow-y-auto rounded-xl border border-solid border-mirage-950  bg-BG-900 p-5 text-white"
       onInput={(e) => autoresize(e)}
       value={text}
       onChange={(e) => setText(e.target.value)}

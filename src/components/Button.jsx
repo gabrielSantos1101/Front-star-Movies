@@ -1,7 +1,7 @@
 export function Button({ onClick, title, ...rest }) {
   return (
     <button
-      className="self-stretch gap-2 text-zinc-900 bg-gray-800 text-sm font-medium"
+      className="gap-2 self-stretch bg-gray-800 text-sm font-medium text-zinc-900"
       onClick={onClick}
       {...rest}
     >
