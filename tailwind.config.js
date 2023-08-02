@@ -44,6 +44,9 @@ module.exports = {
       fontSize: {
         '5xl': '2.5rem',
       },
+      height: {
+        'hv-calc': 'calc(100vh - 8.0625rem)',
+      },
     },
   },
   plugins: [],

@@ -3,8 +3,20 @@
 @tailwind utilities;
 
 body {
+    font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
+}
+
+input[type=file]::file-selector-button{
+  visibility: hidden;
+  color: transparent;
+}
+
+input[type=file]::-webkit-file-upload-button{
+  visibility: hidden;
+  color: transparent;
 }
