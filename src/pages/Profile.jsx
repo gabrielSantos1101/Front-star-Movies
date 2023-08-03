@@ -1,16 +1,11 @@
-import { Popcorn } from 'phosphor-react'
+import { Header } from '../components/Header'
 import { Input } from '../components/Input'
 import { User } from '../components/User'
 
 export function Profile() {
   return (
     <div className="h-full w-full bg-BG-900">
-      <header className="flex items-center justify-between border-b-[1px] border-gray-900 px-16 py-10">
-        <h2 className="flex flex-row-reverse gap-1 text-[25px] font-bold leading-7 text-white">
-          <Popcorn /> Star Movies
-        </h2>
-        <User url={'gabrielsantos1101'} />
-      </header>
+      <Header />
 
       <main className="relative mx-auto grid h-hv-calc max-w-7xl overflow-y-auto p-16">
         <div>

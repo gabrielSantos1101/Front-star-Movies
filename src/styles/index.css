@@ -11,6 +11,10 @@ body {
     overflow: hidden;
 }
 
+p, h1, h2, h3, h4, h5, h6 {
+  color: #7f8ea3;
+  }
+
 input[type=file]::file-selector-button{
   visibility: hidden;
   color: transparent;

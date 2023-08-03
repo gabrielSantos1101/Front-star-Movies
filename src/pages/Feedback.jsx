@@ -1,11 +1,10 @@
 import StarIcon from '@mui/icons-material/Star'
 import { Box, Rating } from '@mui/material'
-import { Popcorn } from 'phosphor-react'
 import React from 'react'
 import { Button } from '../components/Button'
+import { Header } from '../components/Header'
 import { Input } from '../components/Input'
 import { Textarea } from '../components/Textarea'
-import { User } from '../components/User'
 
 const labels = {
   0.5: 'Horrivel',
@@ -29,12 +28,7 @@ export function Feedback() {
 
   return (
     <div className="h-full w-full bg-BG-900">
-      <header className="flex items-center justify-between border-b-[1px] border-gray-900 px-16 py-10">
-        <h2 className="flex flex-row-reverse gap-1 text-[25px] font-bold leading-7 text-white">
-          <Popcorn /> Star Movies
-        </h2>
-        <User url={'gabrielsantos1101'} />
-      </header>
+      <Header />
 
       <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
         <div className="mx-auto max-w-7xl">

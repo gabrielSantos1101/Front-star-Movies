@@ -1,16 +1,12 @@
-import { CaretLeft, InstagramLogo, Popcorn } from 'phosphor-react'
+import { CaretLeft, InstagramLogo } from 'phosphor-react'
 import { Button } from '../components/Button'
+import { Header } from '../components/Header'
 import { User } from '../components/User'
 
 export function UserProfile() {
   return (
     <div className="h-full w-full bg-BG-900">
-      <header className="flex items-center justify-between border-b-[1px] border-gray-900 px-16 py-10">
-        <h2 className="flex flex-row-reverse gap-1 text-[25px] font-bold leading-7 text-white">
-          <Popcorn /> Star Movies
-        </h2>
-        <User url={'gabrielsantos1101'} size={12} />
-      </header>
+      <Header />
 
       <div className="relative grid h-full place-items-center overflow-y-auto">
         <Button title={'Voltar'} lTop transparent icon={CaretLeft} />
