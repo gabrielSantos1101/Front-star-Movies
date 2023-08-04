@@ -1,15 +1,24 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Button } from '../components/Button'
 import { Film } from '../components/Film'
 import { Header } from '../components/Header'
 
 export function Home() {
+  const navigate = useNavigate()
+  function handleClick() {
+    navigate('/create/film')
+  }
   return (
     <div className="h-full w-full bg-BG-900">
       <Header />
 
       <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
         <div className="mx-auto w-full max-w-7xl">
-          <h1 className="text-3xl text-gray-200">lista de filmes</h1>
+          <div className="flex gap-4">
+            <h1 className="text-3xl text-gray-200">lista de filmes</h1>
+            <Button isAdd title={'Adicionar filme'} onClick={handleClick} />
+          </div>
 
           <section className="mt-9 flex w-full flex-wrap gap-6">
             <Film

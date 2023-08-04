@@ -1,16 +1,32 @@
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Popcorn } from 'phosphor-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { useAuth } from '../hooks/auth'
+import { api } from '../services/api'
 import { Input } from './Input'
 import { User } from './User'
 
 export function Header() {
   const { signOut } = useAuth()
   const [anchorEl, setAnchorEl] = useState(null)
+  const [image, setImage] = useState('')
   const navigate = useNavigate()
+  useEffect(() => {
+    async function getUser() {
+      await api
+        .get('/user')
+        .then((res) => {
+          setImage(res.data.image)
+        })
+        .catch((err) => {
+          toast.error(err)
+        })
+    }
+    getUser()
+  }, [])
 
   const open = Boolean(anchorEl)
   function handleClick(event) {
@@ -44,7 +60,7 @@ export function Header() {
       </div>
       <button onClick={(e) => handleClick(e)}>
         <div className="pointer-events-none">
-          <User url={'gabrielsantos1101'} />
+          <User url={image} />
         </div>
       </button>
       <Menu
