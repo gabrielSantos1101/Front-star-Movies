@@ -41,17 +41,17 @@ export function SignUp() {
 
     if (isChecked === true) {
       await api
-        .post('/users', {
+        .post('/user', {
           name,
           email,
           password,
         })
         .then(() => {
           toast.success('Usuário criado com sucesso')
-          navigate('/')
+          navigate(-1)
         })
         .catch(() => {
-          toast.error('Erro ao criar o usuário')
+          toast.error('erro ao criar usuário')
         })
     }
   }

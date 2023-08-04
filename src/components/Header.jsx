@@ -16,8 +16,20 @@ export function Header() {
   function handleClick(event) {
     setAnchorEl(event.currentTarget)
   }
+
+  function handleSignOut() {
+    handleClose()
+    signOut()
+    navigate('/')
+  }
+
   function handleClose() {
     setAnchorEl(null)
+  }
+
+  function handleProfile() {
+    handleClose()
+    navigate('/profile')
   }
 
   return (
@@ -42,19 +54,9 @@ export function Header() {
         onClose={handleClose}
         sx={{ top: '10px', left: '-10px' }}
       >
+        <MenuItem onClick={() => handleProfile()}>Perfil</MenuItem>
         <MenuItem
-          onClick={() => {
-            handleClose()
-            navigate('/profile')
-          }}
-        >
-          Perfil
-        </MenuItem>
-        <MenuItem
-          onClick={() => {
-            handleClose()
-            signOut()
-          }}
+          onClick={() => handleSignOut()}
           className="hover:text-red-500"
         >
           Sair

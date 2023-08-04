@@ -3,13 +3,15 @@ import { useState } from 'react'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { TextButton } from '../components/textButton'
+import { useAuth } from '../hooks/auth'
 
 export function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const { signIn } = useAuth()
 
   function handleSignIn() {
-    console.log(email, password)
+    signIn({ email, password })
   }
 
   return (
