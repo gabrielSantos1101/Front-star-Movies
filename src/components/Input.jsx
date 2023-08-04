@@ -7,6 +7,7 @@ export function Input({
   value,
   onChange,
   Type,
+  minlength,
   ...rest
 }) {
   const inputId = uuidv4()
@@ -26,6 +27,7 @@ export function Input({
         placeholder={placeholder}
         value={value}
         type={Type}
+        minLength={minlength}
         onChange={onChange}
         {...rest}
       />

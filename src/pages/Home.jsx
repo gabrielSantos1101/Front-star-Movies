@@ -2,7 +2,7 @@ import React from 'react'
 import { Film } from '../components/Film'
 import { Header } from '../components/Header'
 
-export function FilmList() {
+export function Home() {
   return (
     <div className="h-full w-full bg-BG-900">
       <Header />
@@ -17,54 +17,70 @@ export function FilmList() {
               value={
                 'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
               }
+              to={'/feed'}
             />
             <Film
               user={'joão Inácio'}
               value={
                 'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
               }
+              to={'/feed'}
             />
             <Film
               user={'joão Inácio'}
               value={
                 'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
               }
+              to={'/feed'}
             />
             <Film
               user={'joão Inácio'}
               value={
                 'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
               }
+              to={'/feed'}
             />
             <Film
               user={'joão Inácio'}
               value={
                 'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
               }
+              to={'/feed'}
             />
             <Film
               user={'joão Inácio'}
               value={
                 'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
               }
+              to={'/feed'}
             />
             <Film
               user={'joão Inácio'}
               value={
                 'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
               }
+              to={'/feed'}
             />
             <Film
               user={'joão Inácio'}
               value={
                 'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
               }
+              to={'/feed'}
             />
             <Film
               user={'joão Inácio'}
               value={
                 'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
               }
+              to={'/feed'}
+            />
+            <Film
+              user={'joão Inácio'}
+              value={
+                'Titanic é um filme de romance e tragédia de 1997 dirigido, escrito, produzido e co-editado por James Cameron. É baseado no naufrágio do RMS Titanic, que afundou no Atlântico Norte na noite de 14 de abril de 1912, após colidir com um iceberg durante sua viagem inaugural de Southampton para Nova York City. O filme apresenta Leonardo DiCaprio e Kate Winslet como membros de diferentes classes sociais que se apaixonam a bordo do navio.'
+              }
+              to={'/feed'}
             />
           </section>
         </div>

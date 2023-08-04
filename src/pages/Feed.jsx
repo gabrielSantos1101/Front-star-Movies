@@ -2,9 +2,11 @@ import StarIcon from '@mui/icons-material/Star'
 import { Box, Rating } from '@mui/material'
 import { PencilLine } from 'phosphor-react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { Comment } from '../components/Comment'
 import { Header } from '../components/Header'
+import { TextButton } from '../components/textButton'
 
 const labels = {
   0.5: 'Horrivel',
@@ -23,22 +25,31 @@ function getLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`
 }
 
-export function Overhaul() {
+export function Feed() {
   const [value, setValue] = React.useState(4)
   const [hover, setHover] = React.useState(-1)
+  const navigate = useNavigate()
 
   return (
     <div className="h-full w-full bg-BG-900">
       <Header />
 
-      <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
+      <main className="relative grid h-hv-calc w-full p-16">
+        <div className="absolute left-4 top-4">
+          <TextButton title={'< Voltar'} istext onClick={() => navigate(-1)} />
+        </div>
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center gap-5">
             <h1 className="text-3xl text-gray-200">Cadastrar comentário</h1>
-            <Button title={'Adicionar'} icon={PencilLine} isAdd />
+            <Button
+              title={'Adicionar'}
+              icon={PencilLine}
+              isAdd
+              onClick={() => navigate('/comment/:movie_id')}
+            />
           </div>
           <div className="mt-6 flex justify-between gap-32">
-            <section className="flex w-full flex-col gap-6 overflow-y-auto">
+            <section className="flex h-hv-section w-full flex-col gap-6 overflow-y-auto">
               <Comment
                 user={'gabrielSantos1101'}
                 value={`

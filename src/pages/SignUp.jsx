@@ -1,11 +1,64 @@
 import { Popcorn } from 'phosphor-react'
+import { useState } from 'react'
+
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
+import { TextButton } from '../components/textButton'
+import { api } from '../services/api'
 
 export function SignUp() {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [isChecked, setChecked] = useState(false)
+
+  const navigate = useNavigate('')
+
+  function handleCheck() {
+    if (!isChecked) {
+      setChecked(true)
+    } else {
+      setChecked(false)
+    }
+  }
+
+  async function handleSign() {
+    if (!name || !email || !password) {
+      toast.error('Preencha todos os campos')
+      return
+    }
+
+    if (!isChecked) {
+      toast.error('Aceite os termos e condições')
+    }
+
+    if (password.length < 8) {
+      toast.error('A senha deve ter no mínimo 8 caracteres')
+      return
+    }
+
+    if (isChecked === true) {
+      await api
+        .post('/users', {
+          name,
+          email,
+          password,
+        })
+        .then(() => {
+          toast.success('Usuário criado com sucesso')
+          navigate('/')
+        })
+        .catch(() => {
+          toast.error('Erro ao criar o usuário')
+        })
+    }
+  }
+
   return (
-    <div className="flex h-full w-full">
-      <div className=" flex shrink grow basis-0 flex-col justify-between self-stretch border-zinc-800 bg-BG-800 p-10">
+    <main className="flex h-full w-full">
+      <aside className=" flex shrink grow basis-0 flex-col justify-between self-stretch border-zinc-800 bg-BG-800 p-10">
         <div className="inline-flex items-center justify-start gap-2">
           <h2 className="flex gap-1 text-[25px] font-bold leading-7 text-white">
             <Popcorn /> Star Movies
@@ -25,13 +78,12 @@ export function SignUp() {
             Rocketseat
           </a>
         </div>
-      </div>
+      </aside>
 
-      <div className="relative flex shrink grow basis-0 flex-col items-center justify-center gap-6 self-stretch bg-BG-900">
-        <Button
-          className="absolute right-12 top-10 rounded-md border border-slate-800 bg-zinc-950 px-5 py-2 text-neutral-50"
-          title={'Login'}
-        />
+      <section className="relative flex shrink grow basis-0 flex-col items-center justify-center gap-6 self-stretch bg-BG-900">
+        <div className="absolute right-20 top-11">
+          <TextButton title={'Login'} onClick={() => navigate(-1)} />
+        </div>
 
         <div className="py-2 text-center">
           <h1 className="text-2xl font-semibold leading-loose text-neutral-50">
@@ -43,21 +95,39 @@ export function SignUp() {
         </div>
 
         <form className="flex flex-col items-center gap-6">
-          <Input placeholder={'email@explorer.com'} type={'email'} />
-
+          <Input
+            placeholder={'ex: gabriel Santos'}
+            type={'text'}
+            onChange={(e) => setName(e.target.value)}
+          />
+          <Input
+            placeholder={'email@explorer.com'}
+            type={'email'}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <Input
+            placeholder={'senha'}
+            type={'password'}
+            minlength="8"
+            onChange={(e) => setPassword(e.target.value)}
+          />
           <Button
-            className="self-stretch rounded-md bg-neutral-50 py-2"
-            title={'Acessar com e-mail'}
+            title={'Criar conta'}
+            isFull
+            isWhite
+            onClick={() => {
+              handleSign()
+            }}
           />
 
           <div className="flex gap-2 text-sm font-normal leading-tight text-zinc-400">
-            <input type="checkbox" id="box" />
+            <input type="checkbox" id="box" onChange={() => handleCheck()} />
             <label htmlFor="box">
               Concordo com os Termos e Políticas de privacidade.
             </label>
           </div>
         </form>
-      </div>
-    </div>
+      </section>
+    </main>
   )
 }

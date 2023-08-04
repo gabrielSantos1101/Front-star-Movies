@@ -31,7 +31,6 @@ export function CreateFilm() {
                   placeholder={'ex: 1997'}
                   Type={'text'}
                 />
-                {/* <div className="mb-10 mt-16 flex w-full gap-16"></div> */}
               </div>
               <label className="text-gray-400">Sinopse</label>
               <Textarea placeholder={'Sinopse do filme'} />
@@ -40,7 +39,7 @@ export function CreateFilm() {
                 <Button title={'Excluir Filme'} isRed={true} />
               </div>
             </section>
-            <div className="flex w-4/12 min-w-[225px] flex-col items-center gap-9">
+            <aside className="flex w-4/12 min-w-[225px] flex-col items-center gap-9">
               <div className="relative overflow-hidden">
                 <h3 className="text-gray-400">Capa do filme</h3>
                 <label
@@ -60,7 +59,7 @@ export function CreateFilm() {
                 src="https://cinema10.com.br/upload/filmes/filmes_12336_tita.jpg"
                 alt="imagem do filme titanic"
               />
-            </div>
+            </aside>
           </form>
         </div>
       </main>

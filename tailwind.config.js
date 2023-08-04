@@ -51,6 +51,7 @@ module.exports = {
       },
       height: {
         'hv-calc': 'calc(100vh - 8.0625rem)',
+        'hv-section': 'calc(100vh - 16.875rem)',
       },
     },
   },

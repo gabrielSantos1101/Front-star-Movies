@@ -1,12 +1,21 @@
 import { Trash } from 'phosphor-react'
+import { useNavigate } from 'react-router-dom'
 
-export function Film({ value, onClick, user, film, ...rest }) {
+export function Film({ value, onClick, to, user, film, ...rest }) {
+  const navigate = useNavigate()
   function limitText(text, maxCharacters) {
     return text.slice(0, maxCharacters) + '...'
   }
 
+  function onClickHandler() {
+    navigate(to)
+  }
+
   return (
-    <div className="relative flex w-[49%] cursor-pointer flex-col gap-4 hover:brightness-90">
+    <div
+      className="relative flex w-[49%] cursor-pointer flex-col gap-4 hover:brightness-90"
+      onClick={onClickHandler}
+    >
       <button
         onClick={onClick}
         className="absolute right-3 top-3 cursor-pointer text-gray-300 hover:text-red-600"
