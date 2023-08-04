@@ -11,8 +11,8 @@ import { UserProfile } from '../pages/UserProfile'
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/" element={<SignIn />} />
+      <Route path="/" element={<Home />} />
       <Route path="/register" element={<SignUp />} />
       <Route path="/feed" element={<Feed />} />
       <Route path="/profile/" element={<Profile />} />

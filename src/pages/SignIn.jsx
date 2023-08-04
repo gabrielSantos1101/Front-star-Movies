@@ -1,8 +1,17 @@
 import { Popcorn } from 'phosphor-react'
+import { useState } from 'react'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
+import { TextButton } from '../components/textButton'
 
 export function SignIn() {
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  function handleSignIn() {
+    console.log(email, password)
+  }
+
   return (
     <div className="flex h-full w-full">
       <div className="flex shrink grow basis-0 flex-col justify-between self-stretch border-zinc-800 bg-BG-800 p-10">
@@ -29,10 +38,9 @@ export function SignIn() {
       </div>
 
       <div className="relative flex shrink grow basis-0 flex-col items-center justify-center gap-6 self-stretch bg-BG-900">
-        <Button
-          className="absolute right-12 top-10 rounded-md border-gray-200 bg-black px-5 py-2 text-neutral-50"
-          title={'Cadastre-se'}
-        />
+        <div className="absolute right-12 top-10">
+          <TextButton title={'Cadastre-se'} to={'/register'} />
+        </div>
 
         <div className="py-2 text-center">
           <h1 className="text-2xl font-semibold leading-loose text-neutral-50">
@@ -43,17 +51,25 @@ export function SignIn() {
           </p>
         </div>
 
-        <form className="flex flex-col items-center gap-6">
-          <div className="flex flex-col items-center gap-4 self-stretch">
-            <Input placeholder={'email@explorer.com'} />
+        <form className="flex w-80 flex-col items-center gap-6">
+          <fieldset className="flex flex-col items-center gap-4 self-stretch">
+            <Input
+              placeholder={'email@explorer.com'}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-            <Input placeholder={'senha'} />
+            <Input
+              placeholder={'senha'}
+              onChange={(e) => setPassword(e.target.value)}
+            />
 
             <Button
-              className="self-stretch rounded-md bg-neutral-50 py-2"
+              isPurple
+              isFull
               title={'Acessar com e-mail'}
+              onClick={() => handleSignIn()}
             />
-          </div>
+          </fieldset>
         </form>
       </div>
     </div>

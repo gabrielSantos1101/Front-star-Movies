@@ -5,7 +5,7 @@ export function Button({
   icon: Icon,
   title,
   isAdd,
-  isWhite = false,
+  isPurple = false,
   isFull,
   to,
   isRed = false,
@@ -30,7 +30,9 @@ export function Button({
           ? 'bg-red-500 text-gray-200 hover:bg-red-700'
           : 'bg-BG-900 text-gray-200 hover:bg-gray-900'
       } ${isFull ? 'w-full' : ''} ${
-        isWhite ? 'bg-purple-500 text-white transition hover:bg-purple-500' : ''
+        isPurple
+          ? 'bg-purple-500 text-white transition hover:bg-purple-500'
+          : ''
       } rounded-md border border-slate-800 px-5 py-2 text-neutral-50  hover:brightness-90`}
       onClick={to ? onClickHandler : onClick}
       {...rest}

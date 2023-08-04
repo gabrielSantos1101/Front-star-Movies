@@ -94,7 +94,7 @@ export function SignUp() {
           </p>
         </div>
 
-        <form className="flex flex-col items-center gap-6">
+        <form className="flex w-80 flex-col items-center gap-6">
           <Input
             placeholder={'ex: gabriel Santos'}
             type={'text'}
@@ -114,18 +114,18 @@ export function SignUp() {
           <Button
             title={'Criar conta'}
             isFull
-            isWhite
+            isPurple
             onClick={() => {
               handleSign()
             }}
           />
 
-          <div className="flex gap-2 text-sm font-normal leading-tight text-zinc-400">
+          <fieldset className="flex gap-2 text-sm font-normal leading-tight text-zinc-400">
             <input type="checkbox" id="box" onChange={() => handleCheck()} />
             <label htmlFor="box">
               Concordo com os Termos e Políticas de privacidade.
             </label>
-          </div>
+          </fieldset>
         </form>
       </section>
     </main>
