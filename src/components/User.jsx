@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom'
+import { api } from '../services/api'
 
 export function User({ url, rounded = true, xl }) {
   return (
     <Link to="/profile" className="h-fit">
       <img
-        src={`https://github.com/${url}.png`}
+        src={`${api.defaults.baseURL}/files/${url}`}
         alt="imagem de avatar"
         // eslint-disable-next-line tailwindcss/no-custom-classname
         className={`${xl ? 'h-32 w-32' : ''} ${
