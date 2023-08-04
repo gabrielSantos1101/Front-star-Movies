@@ -1,10 +1,25 @@
+import Menu from '@mui/material/Menu'
+import MenuItem from '@mui/material/MenuItem'
 import { Popcorn } from 'phosphor-react'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../hooks/auth'
 import { Input } from './Input'
 import { User } from './User'
 
 export function Header() {
+  const { signOut } = useAuth()
+  const [anchorEl, setAnchorEl] = useState(null)
+  const navigate = useNavigate()
+
+  const open = Boolean(anchorEl)
+  function handleClick(event) {
+    setAnchorEl(event.currentTarget)
+  }
+  function handleClose() {
+    setAnchorEl(null)
+  }
+
   return (
     <header className="flex items-center justify-between border-b-[1px] border-gray-900 px-16 py-10">
       <Link to={'/'}>
@@ -15,7 +30,36 @@ export function Header() {
       <div className="w-2/3">
         <Input Type={'search'} placeholder={'Pesquise por comentário'} />
       </div>
-      <User url={'gabrielsantos1101'} />
+      <button onClick={(e) => handleClick(e)}>
+        <div className="pointer-events-none">
+          <User url={'gabrielsantos1101'} />
+        </div>
+      </button>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        sx={{ top: '10px', left: '-10px' }}
+      >
+        <MenuItem
+          onClick={() => {
+            handleClose()
+            navigate('/profile')
+          }}
+        >
+          Perfil
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            handleClose()
+            signOut()
+          }}
+          className="hover:text-red-500"
+        >
+          Sair
+        </MenuItem>
+      </Menu>
     </header>
   )
 }
