@@ -10,12 +10,11 @@ export function AuthProvider({ children }) {
   async function signIn({ email, password }) {
     try {
       const response = await api.post('/user/session', { email, password })
-      const { token, user } = response.data
+      const { token } = response.data
 
       localStorage.setItem('token', token)
 
-      api.defaults.headers.common.Authorization = `Bearer ${token}`
-      setData({ token, user })
+      setData({ token })
     } catch (err) {
       toast.error('Usuário ou senha inválidos')
     }
@@ -24,6 +23,15 @@ export function AuthProvider({ children }) {
   function signOut() {
     localStorage.removeItem('token')
     setData({})
+  }
+
+  function handleErrorFetchData(error) {
+    if (error.response.status === 401) {
+      toast.error(error.response.data.message)
+      signOut()
+    } else {
+      toast.error(error.response.data.message)
+    }
   }
 
   useEffect(() => {
@@ -37,7 +45,9 @@ export function AuthProvider({ children }) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ signIn, signOut, token: data.token }}>
+    <AuthContext.Provider
+      value={{ signIn, signOut, token: data.token, handleErrorFetchData }}
+    >
       {children}
     </AuthContext.Provider>
   )
