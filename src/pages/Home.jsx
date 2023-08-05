@@ -7,7 +7,7 @@ import { api } from '../services/api'
 import { useAuth } from '../hooks/auth'
 
 export function Home() {
-  const { token, handleErrorFetchData } = useAuth()
+  const { handleErrorFetchData } = useAuth()
   const [movies, setMovies] = useState([])
   const navigate = useNavigate()
 
@@ -19,14 +19,14 @@ export function Home() {
       try {
         const {
           data: { movies },
-        } = await api.get('movie')
+        } = await api.get('/movie')
         setMovies(movies)
       } catch (error) {
         handleErrorFetchData(error)
       }
     }
     getData()
-  }, [token, handleErrorFetchData])
+  }, [handleErrorFetchData])
   return (
     <div className="h-full w-full bg-BG-900">
       <Header />
@@ -43,6 +43,7 @@ export function Home() {
               <Film
                 key={movie.id}
                 user={movie.user_name}
+                userId={movie.user_id}
                 value={movie.sinopse}
                 to={`/feed/${movie.id}`}
               />
