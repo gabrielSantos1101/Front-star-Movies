@@ -2,43 +2,34 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Button } from '../components/Button'
-import { Header } from '../components/Header'
 import { Input } from '../components/Input'
 import { User } from '../components/User'
 import { api } from '../services/api'
+import { useAuth } from '../hooks/auth'
 
 export function Profile() {
+  const navigate = useNavigate()
+  const { handleChangeImageUser } = useAuth()
+
   const [image, setImage] = useState('')
   const [name, setName] = useState('')
   const [insta, setInsta] = useState('')
   const [twitter, setTwitter] = useState('')
   const [tiktok, setTiktok] = useState('')
   const [threads, setThreads] = useState('')
-  const navigate = useNavigate()
 
-  useEffect(() => {
-    async function getUser() {
-      await api
-        .get('/user')
-        .then((res) => {
-          setName(res.data.name)
-          setInsta(res.data.instagram_url)
-          setTwitter(res.data.twitter_url)
-          setTiktok(res.data.tiktok_url)
-          setThreads(res.data.threads_url)
-          setImage(res.data.image)
-        })
-        .catch((err) => {
-          toast.error(err)
-        })
-    }
-    getUser()
-  }, [])
+  const [imagePreview, setImagePreview] = useState('')
 
-  function handleBack() {
-    navigate(-1)
+  function changeImage(image) {
+    const previewURL = URL.createObjectURL(image)
+
+    setImagePreview(previewURL)
+    setImage(image)
   }
 
+  function handleBack() {
+    navigate('/')
+  }
   async function handleSubmit() {
     const form = new FormData()
     form.append('name', name)
@@ -50,15 +41,34 @@ export function Profile() {
 
     try {
       await api.put('/user', form)
-      navigate(-1) // talvez mudar isso
+      handleChangeImageUser(imagePreview)
+      toast.success('Comentario criado com sucesso')
+      navigate('/') // talvez mudar isso
     } catch (err) {
       console.log(err)
     }
   }
+  useEffect(() => {
+    async function getUser() {
+      await api
+        .get('/user')
+        .then((res) => {
+          setName(res.data.name)
+          setInsta(res.data.instagram_url || '')
+          setTwitter(res.data.twitter_url || '')
+          setTiktok(res.data.tiktok_url || '')
+          setThreads(res.data.threads_url || '')
+          setImage(res.data.image || '')
+        })
+        .catch((err) => {
+          toast.error(err)
+        })
+    }
+    getUser()
+  }, [])
+
   return (
     <div className="h-full w-full bg-BG-900">
-      <Header />
-
       <main className="relative mx-auto grid h-hv-calc max-w-7xl overflow-y-auto p-16">
         <div>
           <h1 className="text-3xl text-gray-200">Editar usuário</h1>
@@ -96,8 +106,8 @@ export function Profile() {
                     <Input
                       label={'Threads'}
                       Type={'text'}
-                      onChange={(e) => setThreads(e.target.value)}
                       value={threads}
+                      onChange={(e) => setThreads(e.target.value)}
                     />
                   </div>
                 </div>
@@ -125,12 +135,16 @@ export function Profile() {
                   type="file"
                   className=" mt-5 w-full cursor-pointer self-stretch rounded-md border border-zinc-800 bg-zinc-950 px-3 py-2"
                   onChange={(e) => {
-                    setImage(e.target.files[0])
+                    changeImage(e.target.files[0])
                   }}
                 />
               </div>
               <div className="pointer-events-none">
-                <User url={image} xl rounded={false} />
+                {imagePreview.length > 0 ? (
+                  <img src={imagePreview} alt="" />
+                ) : (
+                  <User url={image} xl rounded={false} />
+                )}
               </div>
             </div>
           </form>
