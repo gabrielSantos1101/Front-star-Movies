@@ -6,6 +6,7 @@ export const AuthContext = createContext({})
 
 export function AuthProvider({ children }) {
   const [data, setData] = useState({})
+  const [imageUpdated, setImageUpdated] = useState('')
 
   async function signIn({ email, password }) {
     try {
@@ -34,6 +35,10 @@ export function AuthProvider({ children }) {
     }
   }
 
+  function handleChangeImageUser(newImageUrl) {
+    setImageUpdated(newImageUrl)
+  }
+
   useEffect(() => {
     const token = localStorage.getItem('token')
 
@@ -46,7 +51,14 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ signIn, signOut, token: data.token, handleErrorFetchData }}
+      value={{
+        signIn,
+        signOut,
+        token: data.token,
+        handleErrorFetchData,
+        imageUpdated,
+        handleChangeImageUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

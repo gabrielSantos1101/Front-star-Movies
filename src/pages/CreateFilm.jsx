@@ -3,8 +3,51 @@ import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { Textarea } from '../components/Textarea'
 import { User } from '../components/User'
+import { useState } from 'react'
+import { api } from '../services/api'
+import { useAuth } from '../hooks/auth'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 export function CreateFilm() {
+  const { handleErrorFetchData } = useAuth()
+  const navigate = useNavigate()
+
+  const [title, setTitle] = useState('')
+  const [age, setAge] = useState('')
+  const [sinopse, setSinopse] = useState('')
+  const [image, setImage] = useState(null)
+  const [imagePreview, setImagePreview] = useState('')
+
+  function handleChangeTextArea(value) {
+    setSinopse(value)
+  }
+
+  function changeImage(image) {
+    const previewURL = URL.createObjectURL(image)
+
+    setImagePreview(previewURL)
+    setImage(image)
+  }
+
+  async function handleSubmit() {
+    const form = new FormData()
+
+    form.append('title', title)
+    form.append('age', age)
+    form.append('sinopse', sinopse)
+    form.append('image', image)
+
+    try {
+      await api.post('/movie', form)
+      toast.success('Comentario criado com sucesso')
+      navigate(`/`)
+    } catch (error) {
+      handleErrorFetchData(error)
+      console.log(error)
+    }
+  }
+
   return (
     <div className="h-full w-full bg-BG-900">
       <header className="flex items-center justify-between border-b-[1px] border-gray-900 px-16 py-10">
@@ -24,19 +67,29 @@ export function CreateFilm() {
                   label={'Titulo do filme'}
                   placeholder={'ex: Titanic'}
                   Type={'text'}
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
                 <Input
                   isFit
                   label={'Ano do filme'}
                   placeholder={'ex: 1997'}
-                  Type={'text'}
+                  Type={'number'}
+                  value={age}
+                  onChange={(e) => setAge(e.target.value)}
                 />
               </div>
-              <label className="text-gray-400">Sinopse</label>
-              <Textarea placeholder={'Sinopse do filme'} />
+              <label className="text-gray-400">
+                Sinopse
+                <Textarea
+                  placeholder={'Sinopse do filme'}
+                  text={sinopse}
+                  changeState={handleChangeTextArea}
+                />
+              </label>
               <div className="mt-7 flex items-center justify-center gap-8">
-                <Button title={'Salvar alterações'} />
-                <Button title={'Excluir Filme'} isRed={true} />
+                <Button title={'Criar filme'} onClick={handleSubmit} />
+                <Button title={'cancelar'} isRed={true} to={'/'} />
               </div>
             </section>
             <aside className="flex w-4/12 min-w-[225px] flex-col items-center gap-9">
@@ -52,13 +105,12 @@ export function CreateFilm() {
                   id="avatar"
                   type="file"
                   className=" mt-5 w-full self-stretch rounded-md border border-zinc-800 bg-zinc-950 px-3 py-2"
+                  onChange={(e) => changeImage(e.target.files[0])}
                 />
               </div>
-              <img
-                className="rounded-xl"
-                src="https://cinema10.com.br/upload/filmes/filmes_12336_tita.jpg"
-                alt="imagem do filme titanic"
-              />
+              {image && (
+                <img className="rounded-xl" src={imagePreview} alt="" />
+              )}
             </aside>
           </form>
         </div>

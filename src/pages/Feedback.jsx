@@ -1,10 +1,12 @@
 import StarIcon from '@mui/icons-material/Star'
 import { Box, Rating } from '@mui/material'
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../components/Button'
-import { Header } from '../components/Header'
-import { Input } from '../components/Input'
 import { Textarea } from '../components/Textarea'
+import { api } from '../services/api'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useAuth } from '../hooks/auth'
+import { toast } from 'react-toastify'
 
 const labels = {
   0.5: 'Horrivel',
@@ -22,35 +24,65 @@ const labels = {
 function getLabelText(value) {
   return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`
 }
+
 export function Feedback() {
-  const [value, setValue] = React.useState(0)
-  const [hover, setHover] = React.useState(-1)
+  const { movie_id } = useParams()
+  const { handleErrorFetchData } = useAuth()
+
+  const navigate = useNavigate()
+
+  const [movie, setMovie] = useState()
+
+  const [value, setValue] = useState(0)
+  const [hover, setHover] = useState(-1)
+
+  const [text, setText] = useState('')
+
+  function handleChangeTextArea(value) {
+    setText(value)
+  }
+
+  async function handleSubmitForm() {
+    try {
+      await api.post(`/comment/${movie_id}`, {
+        description: text,
+        rating_movie: value,
+      })
+      toast.success('Comentario criado com sucesso')
+      navigate(`/feed/${movie_id}`)
+    } catch (error) {
+      handleErrorFetchData(error)
+    }
+  }
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const { data: movieResponse } = await api.get(`movie/${movie_id}`)
+
+        setMovie(movieResponse)
+      } catch (error) {
+        handleErrorFetchData(error)
+      }
+    }
+    getData()
+  }, [handleErrorFetchData, movie_id, setValue])
 
   return (
     <div className="h-full w-full bg-BG-900">
-      <Header />
-
       <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
         <div className="mx-auto max-w-7xl">
           <h1 className="text-3xl text-gray-200">Cadastrar comentário</h1>
           <form className="mt-6 flex justify-between gap-32">
             <fieldset className="w-full">
-              <div className="mb-8 flex gap-24">
-                <Input
-                  label={'Titulo do filme'}
-                  placeholder={'ex: Titanic'}
-                  Type={'text'}
+              <label className="text-gray-400">
+                Adicionar comentário
+                <Textarea
+                  placeholder={'Sinopse do filme'}
+                  changeState={handleChangeTextArea}
+                  text={text}
                 />
-                <div className="w-2/5">
-                  <Input
-                    label={'Ano do filme'}
-                    placeholder={'ex: 1997'}
-                    Type={'text'}
-                  />
-                </div>
-              </div>
-              <label className="text-gray-400">Adicionar comentário</label>
-              <Textarea placeholder={'Sinopse do filme'} />
+              </label>
               <div className="mb-12">
                 <h3 className="mt-6 text-gray-400">Nota</h3>
                 <Box
@@ -81,28 +113,14 @@ export function Feedback() {
                 </Box>
               </div>
               <div className="mt-7 flex items-center justify-center gap-8">
-                <Button title={'Salvar alterações'} />
-                <Button title={'Excluir Filme'} isRed={true} />
+                <Button title={'Criar comentario'} onClick={handleSubmitForm} />
+                <Button title={'Voltar'} isRed={true} />
               </div>
             </fieldset>
             <fieldset className="flex w-4/12 min-w-[225px] flex-col items-center gap-9">
-              <div className="relative overflow-hidden">
-                <h3 className="text-gray-400">Capa do filme</h3>
-                <label
-                  htmlFor="avatar"
-                  className="absolute bottom-[10px] left-5 cursor-pointer bg-BG-900 px-2 py-1 text-sm text-gray-400"
-                >
-                  Fazer upload da imagem
-                </label>
-                <input
-                  id="avatar"
-                  type="file"
-                  className=" mt-5 w-full self-stretch rounded-md border border-zinc-800 bg-BG-900 px-3 py-2"
-                />
-              </div>
               <img
-                className="rounded-xl"
-                src="https://cinema10.com.br/upload/filmes/filmes_12336_tita.jpg"
+                className="rounded-xl "
+                src={`${api.defaults.baseURL}/files/${movie.image}`}
                 alt="imagem do filme titanic"
               />
             </fieldset>

@@ -1,7 +1,7 @@
 import Menu from '@mui/material/Menu'
 import MenuItem from '@mui/material/MenuItem'
 import { Popcorn } from 'phosphor-react'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAuth } from '../hooks/auth'
@@ -14,21 +14,9 @@ export function Header() {
   const [anchorEl, setAnchorEl] = useState(null)
   const [image, setImage] = useState('')
   const navigate = useNavigate()
-  useEffect(() => {
-    async function getUser() {
-      await api
-        .get('/user')
-        .then((res) => {
-          setImage(res.data.image)
-        })
-        .catch((err) => {
-          toast.error(err)
-        })
-    }
-    getUser()
-  }, [])
 
   const open = Boolean(anchorEl)
+
   function handleClick(event) {
     setAnchorEl(event.currentTarget)
   }
@@ -47,6 +35,20 @@ export function Header() {
     handleClose()
     navigate('/profile')
   }
+
+  useEffect(() => {
+    async function getUser() {
+      await api
+        .get('/user')
+        .then((res) => {
+          setImage(res.data.image)
+        })
+        .catch((err) => {
+          toast.error(err)
+        })
+    }
+    getUser()
+  }, [])
 
   return (
     <header className="flex items-center justify-between border-b-[1px] border-gray-900 px-16 py-10">

@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { Comment } from '../components/Comment'
-import { Header } from '../components/Header'
 import { TextButton } from '../components/textButton'
 import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
@@ -37,7 +36,6 @@ export function Feed() {
   const [value, setValue] = useState(0)
   const [hover, setHover] = useState(-1)
 
-  console.log(movie)
   useEffect(() => {
     const getData = async () => {
       try {
@@ -54,8 +52,6 @@ export function Feed() {
 
   return (
     <div className="h-full w-full bg-BG-900">
-      <Header />
-
       <main className="relative grid h-hv-calc w-full p-16">
         <div className="absolute left-4 top-4">
           <TextButton title={'< Voltar'} istext onClick={() => navigate(-1)} />
@@ -77,6 +73,7 @@ export function Feed() {
                   <Comment
                     key={comment.id}
                     user={comment.name}
+                    image={comment.image}
                     value={comment.description}
                   />
                 ))}

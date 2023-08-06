@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { Film } from '../components/Film'
-import { Header } from '../components/Header'
 import { api } from '../services/api'
 import { useAuth } from '../hooks/auth'
 
@@ -29,8 +28,6 @@ export function Home() {
   }, [handleErrorFetchData])
   return (
     <div className="h-full w-full bg-BG-900">
-      <Header />
-
       <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
         <div className="mx-auto w-full max-w-7xl">
           <div className="flex gap-4">

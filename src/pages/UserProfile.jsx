@@ -1,14 +1,11 @@
 import { InstagramLogo, TiktokLogo, TwitterLogo } from 'phosphor-react'
 import ThreadsLogo from '../assets/threads.svg'
-import { Header } from '../components/Header'
 import { User } from '../components/User'
 import { TextButton } from '../components/textButton'
 
 export function UserProfile() {
   return (
     <div className="h-full w-full bg-BG-900">
-      <Header />
-
       <main className="relative grid h-full place-items-center overflow-y-auto">
         <TextButton title={'Voltar'} />
 
