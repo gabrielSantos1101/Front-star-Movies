@@ -1,12 +1,12 @@
 import StarIcon from '@mui/icons-material/Star'
 import { Box, Rating } from '@mui/material'
 import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { Button } from '../components/Button'
 import { Textarea } from '../components/Textarea'
-import { api } from '../services/api'
-import { useNavigate, useParams } from 'react-router-dom'
 import { useAuth } from '../hooks/auth'
-import { toast } from 'react-toastify'
+import { api } from '../services/api'
 
 const labels = {
   0.5: 'Horrivel',
@@ -71,7 +71,7 @@ export function Feedback() {
   return (
     <div className="h-full w-full bg-BG-900">
       <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto w-full max-w-7xl">
           <h1 className="text-3xl text-gray-200">Cadastrar comentário</h1>
           <form className="mt-6 flex justify-between gap-32">
             <fieldset className="w-full">
@@ -113,14 +113,14 @@ export function Feedback() {
                 </Box>
               </div>
               <div className="mt-7 flex items-center justify-center gap-8">
-                <Button title={'Criar comentario'} onClick={handleSubmitForm} />
-                <Button title={'Voltar'} isRed={true} />
+                <Button title={'comentar'} onClick={handleSubmitForm} />
+                <Button title={'Excluir'} isRed={true} />
               </div>
             </fieldset>
             <fieldset className="flex w-4/12 min-w-[225px] flex-col items-center gap-9">
               <img
                 className="rounded-xl "
-                src={`${api.defaults.baseURL}/files/${movie.image}`}
+                src="#"
                 alt="imagem do filme titanic"
               />
             </fieldset>

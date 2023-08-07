@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { Film } from '../components/Film'
-import { api } from '../services/api'
 import { useAuth } from '../hooks/auth'
+import { api } from '../services/api'
 
 export function Home() {
   const { handleErrorFetchData } = useAuth()
@@ -42,6 +42,8 @@ export function Home() {
                 user={movie.user_name}
                 userId={movie.user_id}
                 value={movie.sinopse}
+                film={movie.title}
+                age={movie.age}
                 to={`/feed/${movie.id}`}
               />
             ))}

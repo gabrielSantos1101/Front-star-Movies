@@ -53,10 +53,10 @@ export function Feed() {
   return (
     <div className="h-full w-full bg-BG-900">
       <main className="relative grid h-hv-calc w-full p-16">
-        <div className="absolute left-4 top-4">
+        <div className="absolute left-8 top-8">
           <TextButton title={'< Voltar'} istext onClick={() => navigate(-1)} />
         </div>
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto w-full max-w-7xl">
           <div className="flex items-center gap-5">
             <h1 className="text-3xl text-gray-200">Cadastrar comentário</h1>
             <Button
@@ -73,7 +73,7 @@ export function Feed() {
                   <Comment
                     key={comment.id}
                     user={comment.name}
-                    image={comment.image}
+                    // image={comment.image}
                     value={comment.description}
                   />
                 ))}

@@ -1,13 +1,11 @@
-import { Popcorn } from 'phosphor-react'
+import { TextareaAutosize } from '@mui/base'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
-import { Textarea } from '../components/Textarea'
-import { User } from '../components/User'
-import { useState } from 'react'
-import { api } from '../services/api'
 import { useAuth } from '../hooks/auth'
-import { toast } from 'react-toastify'
-import { useNavigate } from 'react-router-dom'
+import { api } from '../services/api'
 
 export function CreateFilm() {
   const { handleErrorFetchData } = useAuth()
@@ -40,7 +38,7 @@ export function CreateFilm() {
 
     try {
       await api.post('/movie', form)
-      toast.success('Comentario criado com sucesso')
+      toast.success('Filme criado com sucesso')
       navigate(`/`)
     } catch (error) {
       handleErrorFetchData(error)
@@ -50,13 +48,6 @@ export function CreateFilm() {
 
   return (
     <div className="h-full w-full bg-BG-900">
-      <header className="flex items-center justify-between border-b-[1px] border-gray-900 px-16 py-10">
-        <h2 className="flex flex-row-reverse gap-1 text-[25px] font-bold leading-7 text-white">
-          <Popcorn /> Star Movies
-        </h2>
-        <User url={'gabrielsantos1101'} />
-      </header>
-
       <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
         <div className="mx-auto max-w-7xl">
           <h1 className="text-3xl text-gray-200">Cadastrar filme</h1>
@@ -81,14 +72,14 @@ export function CreateFilm() {
               </div>
               <label className="text-gray-400">
                 Sinopse
-                <Textarea
-                  placeholder={'Sinopse do filme'}
-                  text={sinopse}
-                  changeState={handleChangeTextArea}
+                <TextareaAutosize
+                  placeholder="Sinopse do filme"
+                  onChange={(e) => handleChangeTextArea(e.target.value)}
+                  className="mt-5 max-h-96 min-h-[20rem] w-full resize-none overflow-y-auto rounded-xl border  border-solid border-mirage-950 bg-BG-900 p-5"
                 />
               </label>
               <div className="mt-7 flex items-center justify-center gap-8">
-                <Button title={'Criar filme'} onClick={handleSubmit} />
+                <Button isCreate title={'Criar filme'} onClick={handleSubmit} />
                 <Button title={'cancelar'} isRed={true} to={'/'} />
               </div>
             </section>

@@ -1,10 +1,10 @@
+import jwt_decode from 'jwt-decode'
 import { Trash } from 'phosphor-react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/auth'
-import jwt_decode from 'jwt-decode'
-import { useEffect, useState } from 'react'
 
-export function Film({ value, onClick, to, user, film, userId }) {
+export function Film({ value, onClick, to, user, film, age, userId }) {
   const { token } = useAuth()
   const navigate = useNavigate()
 
@@ -38,13 +38,16 @@ export function Film({ value, onClick, to, user, film, userId }) {
       ) : (
         ''
       )}
-
-      <div className=" flex h-56 flex-col items-end rounded-lg bg-BG-700 p-6 pr-14">
-        <h3>{film}</h3>
-        <p className="mt-4 max-h-96 overflow-auto text-justify text-gray-200">
-          {limitText(value, 300)}
-        </p>
-        <span className="mt-4 text-sm text-white">- {user}</span>
+      <div className=" flex h-56 flex-col items-start rounded-lg bg-BG-700 p-6 pr-14">
+        <h3 className="text-xl text-white">
+          {film} - {age}
+        </h3>
+        <div className="flex h-full w-full flex-col items-start justify-between">
+          <p className="mt-4 max-h-96 overflow-auto text-justify text-gray-200">
+            {limitText(value, 260)}
+          </p>
+          <span className="mt-4 self-end text-sm text-white">- {user}</span>
+        </div>
       </div>
     </div>
   )
