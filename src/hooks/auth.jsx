@@ -13,10 +13,11 @@ export function AuthProvider({ children }) {
       const response = await api.post('/user/session', { email, password })
       const { token } = response.data
 
-      localStorage.setItem('token', token)
+      localStorage.setItem('token', response.data.token)
 
       setData({ token })
     } catch (err) {
+      console.log(err)
       toast.error('Usuário ou senha inválidos')
     }
   }
@@ -42,12 +43,10 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const token = localStorage.getItem('token')
 
-    api.interceptors.request.use((config) => {
-      if (token) {
-        config.headers.Authorization = `Bearer ${token}`
-      }
-      return config
-    })
+    if (token) {
+      // api.defaults.headers.common.Authorization = `Bearer ${data.token}`
+      setData({ token })
+    }
   }, [])
 
   return (

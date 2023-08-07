@@ -6,7 +6,7 @@ import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
 
 export function Home() {
-  const { handleErrorFetchData } = useAuth()
+  const { handleErrorFetchData, token } = useAuth()
   const [movies, setMovies] = useState([])
   const navigate = useNavigate()
 
@@ -23,14 +23,18 @@ export function Home() {
       try {
         const {
           data: { movies },
-        } = await api.get('/movie')
+        } = await api.get('/movie', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         setMovies(movies)
-      } catch (error) {
-        handleErrorFetchData(error)
+      } catch (err) {
+        handleErrorFetchData(err)
       }
     }
     getData()
-  }, [handleErrorFetchData])
+  }, [token, handleErrorFetchData])
   return (
     <div className="h-full w-full bg-BG-900">
       <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
