@@ -1,4 +1,5 @@
 import { Trash } from 'phosphor-react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
 import { User } from './User'
@@ -12,14 +13,20 @@ export function Comment({
   image,
   email,
 }) {
-  const { handleErrorFetchData } = useAuth()
+  const { handleErrorFetchData, token } = useAuth()
+  const navigate = useNavigate()
 
   async function handleDelete() {
     try {
-      await api.delete(`/comment/${id}`)
+      await api.delete(`/comment/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       deleteComment(id)
-    } catch (error) {
-      handleErrorFetchData(error)
+    } catch (err) {
+      handleErrorFetchData(err)
+      navigate('/')
     }
   }
 

@@ -27,7 +27,7 @@ function getLabelText(value) {
 }
 
 export function Feed() {
-  const { handleErrorFetchData } = useAuth()
+  const { handleErrorFetchData, token } = useAuth()
   const { movie_id } = useParams()
   const navigate = useNavigate()
 
@@ -46,20 +46,29 @@ export function Feed() {
     const getData = async () => {
       try {
         const [movieResponse, userResonse] = await Promise.all([
-          await api.get(`/movie/${movie_id}`),
-          await api.get(`/user`),
+          await api.get(`/movie/${movie_id}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }),
+          await api.get(`/user`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }),
         ])
 
         setUserEmail(userResonse.data.email)
         setMovie(movieResponse.data)
         setComments(movieResponse.data.comments)
         setValue(movieResponse.data.averageRating)
-      } catch (error) {
-        handleErrorFetchData(error)
+      } catch (err) {
+        navigate('/')
+        handleErrorFetchData(err)
       }
     }
     getData()
-  }, [handleErrorFetchData, movie_id, setValue])
+  }, [token, navigate, handleErrorFetchData, movie_id, setValue])
 
   return (
     <main className="relative grid h-hv-calc w-full p-16">

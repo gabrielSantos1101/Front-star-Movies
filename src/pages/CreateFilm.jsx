@@ -8,7 +8,7 @@ import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
 
 export function CreateFilm() {
-  const { handleErrorFetchData } = useAuth()
+  const { handleErrorFetchData, token } = useAuth()
   const navigate = useNavigate()
 
   const [title, setTitle] = useState('')
@@ -37,12 +37,16 @@ export function CreateFilm() {
     form.append('image', image)
 
     try {
-      await api.post('/movie', form)
+      await api.post('/movie', form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       toast.success('Filme criado com sucesso')
       navigate(`/`)
-    } catch (error) {
-      handleErrorFetchData(error)
-      console.log(error)
+    } catch (err) {
+      handleErrorFetchData(err)
+      navigate(`/`)
     }
   }
 

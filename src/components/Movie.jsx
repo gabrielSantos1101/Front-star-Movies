@@ -33,10 +33,15 @@ export function Movie({
   async function movieDelete(e) {
     e.stopPropagation()
     try {
-      await api.delete(`/movie/${id}`)
+      await api.delete(`/movie/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       handleDelete(id)
     } catch (error) {
       handleErrorFetchData(error)
+      navigate('/')
     }
   }
 

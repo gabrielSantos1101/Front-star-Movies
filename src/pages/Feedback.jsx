@@ -27,7 +27,7 @@ function getLabelText(value) {
 
 export function Feedback() {
   const { movie_id } = useParams()
-  const { handleErrorFetchData } = useAuth()
+  const { handleErrorFetchData, token } = useAuth()
 
   const navigate = useNavigate()
 
@@ -44,10 +44,18 @@ export function Feedback() {
 
   async function handleSubmitForm() {
     try {
-      await api.post(`/comment/${movie_id}`, {
-        description: text,
-        rating_movie: Math.ceil(value),
-      })
+      await api.post(
+        `/comment/${movie_id}`,
+        {
+          description: text,
+          rating_movie: Math.ceil(value),
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
       toast.success('Comentario criado com sucesso')
       navigate(`/feed/${movie_id}`)
     } catch (error) {
@@ -58,7 +66,11 @@ export function Feedback() {
   useEffect(() => {
     const getData = async () => {
       try {
-        const { data: movieResponse } = await api.get(`movie/${movie_id}`)
+        const { data: movieResponse } = await api.get(`movie/${movie_id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
 
         setMovie(movieResponse)
       } catch (error) {

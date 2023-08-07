@@ -10,7 +10,7 @@ import { api } from '../services/api'
 
 export function Profile() {
   const navigate = useNavigate()
-  const { handleChangeImageUser } = useAuth()
+  const { handleChangeImageUser, handleErrorFetchData, token } = useAuth()
 
   const [image, setImage] = useState('')
   const [name, setName] = useState('')
@@ -41,18 +41,27 @@ export function Profile() {
     form.append('threads_url', threads)
 
     try {
-      await api.put('/user', form)
+      await api.put('/user', form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       handleChangeImageUser(imagePreview)
       toast.success('Comentario criado com sucesso')
-      navigate('/') // talvez mudar isso
+      navigate('/')
     } catch (err) {
-      console.log(err)
+      navigate('/')
+      handleErrorFetchData(err)
     }
   }
   useEffect(() => {
     async function getUser() {
       await api
-        .get('/user')
+        .get('/user', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((res) => {
           setName(res.data.name)
           setInsta(res.data.instagram_url || '')
@@ -62,11 +71,12 @@ export function Profile() {
           setImage(res.data.image || '')
         })
         .catch((err) => {
-          toast.error(err)
+          navigate('/')
+          handleErrorFetchData(err)
         })
     }
     getUser()
-  }, [])
+  }, [navigate, token, handleErrorFetchData])
 
   return (
     <div className="h-full w-full bg-BG-900">

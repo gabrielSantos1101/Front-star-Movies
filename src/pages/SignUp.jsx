@@ -6,9 +6,11 @@ import { toast } from 'react-toastify'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { TextButton } from '../components/textButton'
+import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
 
 export function SignUp() {
+  const { token, handleErrorFetchData } = useAuth()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -41,17 +43,25 @@ export function SignUp() {
 
     if (isChecked === true) {
       await api
-        .post('/user', {
-          name,
-          email,
-          password,
-        })
+        .post(
+          '/user',
+          {
+            name,
+            email,
+            password,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          },
+        )
         .then(() => {
           toast.success('Usuário criado com sucesso')
           navigate(-1)
         })
-        .catch(() => {
-          toast.error('erro ao criar usuário')
+        .catch((err) => {
+          handleErrorFetchData(err)
         })
     }
   }

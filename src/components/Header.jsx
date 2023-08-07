@@ -10,7 +10,7 @@ import { Input } from './Input'
 import { User } from './User'
 
 export function Header() {
-  const { signOut } = useAuth()
+  const { signOut, token } = useAuth()
   const [anchorEl, setAnchorEl] = useState(null)
   const [image, setImage] = useState('')
   const navigate = useNavigate()
@@ -39,7 +39,11 @@ export function Header() {
   useEffect(() => {
     async function getUser() {
       await api
-        .get('/user')
+        .get('/user', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((res) => {
           setImage(res.data.image)
         })

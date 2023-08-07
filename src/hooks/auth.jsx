@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
       const response = await api.post('/user/session', { email, password })
       const { token } = response.data
 
-      localStorage.setItem('token', response.data.token)
+      localStorage.setItem('token', token)
 
       setData({ token })
     } catch (err) {

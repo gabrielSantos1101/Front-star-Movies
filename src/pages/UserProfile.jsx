@@ -1,12 +1,14 @@
 import { InstagramLogo, TiktokLogo, TwitterLogo } from 'phosphor-react'
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ThreadsLogo from '../assets/threads.svg'
 import { User } from '../components/User'
 import { TextButton } from '../components/textButton'
+import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
 
 export function UserProfile() {
+  const { handleErrorFetchData, token } = useAuth()
   const [insta, setInsta] = useState()
   const [twitter, setTwitter] = useState()
   const [tiktok, setTiktok] = useState()
@@ -14,20 +16,36 @@ export function UserProfile() {
   const [image, setImage] = useState()
   const [name, setName] = useState()
   const { email } = useParams()
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function getUser() {
-      await api.post('/user/selectUser', { email }).then((response) => {
-        setInsta(response.data.instagram_url)
-        setTwitter(response.data.twitter_url)
-        setTiktok(response.data.tiktok_url)
-        setThreads(response.data.threads_url)
-        setImage(response.data.image)
-        setName(response.data.name)
-      })
+      try {
+        await api
+          .post(
+            '/user/selectUser',
+            { email },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            },
+          )
+          .then((response) => {
+            setInsta(response.data.instagram_url)
+            setTwitter(response.data.twitter_url)
+            setTiktok(response.data.tiktok_url)
+            setThreads(response.data.threads_url)
+            setImage(response.data.image)
+            setName(response.data.name)
+          })
+      } catch (err) {
+        handleErrorFetchData(err)
+        navigate('/')
+      }
     }
     getUser()
-  }, [email])
+  }, [email, navigate, handleErrorFetchData, token])
   return (
     <div className="h-full w-full bg-BG-900">
       <main className="relative grid h-full place-items-center overflow-y-auto">
