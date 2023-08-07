@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../components/Button'
-import { Film } from '../components/Film'
+import { Movie } from '../components/Movie'
 import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
 
@@ -13,6 +13,11 @@ export function Home() {
   function handleClick() {
     navigate('/create/film')
   }
+
+  function handleDelete(id) {
+    setMovies((prevState) => prevState.filter((movie) => movie.id !== id))
+  }
+
   useEffect(() => {
     const getData = async () => {
       try {
@@ -37,7 +42,7 @@ export function Home() {
 
           <section className="mt-9 flex w-full flex-wrap gap-6">
             {movies.map((movie) => (
-              <Film
+              <Movie
                 key={movie.id}
                 user={movie.user_name}
                 userId={movie.user_id}
@@ -45,6 +50,8 @@ export function Home() {
                 film={movie.title}
                 age={movie.age}
                 to={`/feed/${movie.id}`}
+                id={movie.id}
+                handleDelete={handleDelete}
               />
             ))}
           </section>
