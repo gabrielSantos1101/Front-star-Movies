@@ -26,11 +26,9 @@ export function Button({
           : ''
       }
       ${Icon ? 'flex items-center gap-2' : ''}
-      ${
-        isRed
-          ? 'bg-red-500 text-gray-200 hover:bg-red-600'
-          : 'bg-BG-900 text-gray-200 hover:bg-gray-900'
-      } ${isFull ? 'w-full' : ''} ${
+      ${isRed ? 'bg-red-500 text-gray-200 hover:bg-red-600' : ' '} ${
+        isFull ? 'w-full' : ''
+      } ${
         isPurple
           ? 'bg-purple-500 text-white transition hover:bg-purple-500'
           : ''

@@ -13,10 +13,10 @@ export function AppRoutes() {
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/feed/:movie_id" element={<Feed />} />
-        <Route path="/profile/" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/create/film" element={<CreateFilm />} />
         <Route path="/comment/:movie_id" element={<Feedback />} />
-        <Route path="/user" element={<UserProfile />} />
+        <Route path="/user/:email" element={<UserProfile />} />
       </Route>
     </Routes>
   )

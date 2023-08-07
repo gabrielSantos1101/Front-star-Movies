@@ -3,12 +3,23 @@ import { Trash } from 'phosphor-react'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/auth'
+import { api } from '../services/api'
 
-export function Film({ value, onClick, to, user, film, age, userId }) {
+export function Movie({
+  value,
+  id,
+  handleDelete,
+  to,
+  user,
+  film,
+  age,
+  userId,
+}) {
   const { token } = useAuth()
   const navigate = useNavigate()
 
   const [isPossibleDelete, setIsPossibleDelete] = useState(false)
+  const { handleErrorFetchData } = useAuth()
 
   function limitText(text, maxCharacters) {
     return text.slice(0, maxCharacters) + '...'
@@ -17,6 +28,16 @@ export function Film({ value, onClick, to, user, film, age, userId }) {
 
   function onClickHandler() {
     navigate(to)
+  }
+
+  async function movieDelete(e) {
+    e.stopPropagation()
+    try {
+      await api.delete(`/movie/${id}`)
+      handleDelete(id)
+    } catch (error) {
+      handleErrorFetchData(error)
+    }
   }
 
   useEffect(() => {
@@ -30,10 +51,10 @@ export function Film({ value, onClick, to, user, film, age, userId }) {
     >
       {isPossibleDelete ? (
         <button
-          onClick={onClick}
-          className="absolute right-3 top-3 cursor-pointer text-gray-300 hover:text-red-600"
+          className="absolute right-3 top-3 z-10 cursor-pointer p-1 text-xl text-gray-300 hover:text-red-600"
+          onClick={(e) => movieDelete(e)}
         >
-          <Trash size={20} />
+          <Trash />
         </button>
       ) : (
         ''

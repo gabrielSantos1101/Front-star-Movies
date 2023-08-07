@@ -1,11 +1,12 @@
+import { At } from 'phosphor-react'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { User } from '../components/User'
-import { api } from '../services/api'
 import { useAuth } from '../hooks/auth'
+import { api } from '../services/api'
 
 export function Profile() {
   const navigate = useNavigate()
@@ -84,12 +85,16 @@ export function Profile() {
                 <div className="flex gap-24">
                   <div className="mt-16 grid w-full gap-4">
                     <Input
+                      isIcon
+                      Icon={At}
                       label={'Instagram'}
                       Type={'text'}
                       onChange={(e) => setInsta(e.target.value)}
                       value={insta}
                     />
                     <Input
+                      isIcon
+                      Icon={At}
                       label={'Tiktok'}
                       Type={'text'}
                       onChange={(e) => setTiktok(e.target.value)}
@@ -98,12 +103,16 @@ export function Profile() {
                   </div>
                   <div className="mt-16 grid w-full gap-4">
                     <Input
+                      isIcon
+                      Icon={At}
                       label={'Twitter'}
                       Type={'text'}
                       onChange={(e) => setTwitter(e.target.value)}
                       value={twitter}
                     />
                     <Input
+                      isIcon
+                      Icon={At}
                       label={'Threads'}
                       Type={'text'}
                       value={threads}

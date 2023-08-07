@@ -31,7 +31,7 @@ export function Feedback() {
 
   const navigate = useNavigate()
 
-  const [movie, setMovie] = useState()
+  const [movie, setMovie] = useState({})
 
   const [value, setValue] = useState(0)
   const [hover, setHover] = useState(-1)
@@ -46,7 +46,7 @@ export function Feedback() {
     try {
       await api.post(`/comment/${movie_id}`, {
         description: text,
-        rating_movie: value,
+        rating_movie: Math.ceil(value),
       })
       toast.success('Comentario criado com sucesso')
       navigate(`/feed/${movie_id}`)
@@ -70,7 +70,7 @@ export function Feedback() {
 
   return (
     <div className="h-full w-full bg-BG-900">
-      <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
+      <main className="relative grid  w-full p-16">
         <div className="mx-auto w-full max-w-7xl">
           <h1 className="text-3xl text-gray-200">Cadastrar comentário</h1>
           <form className="mt-6 flex justify-between gap-32">
@@ -85,13 +85,7 @@ export function Feedback() {
               </label>
               <div className="mb-12">
                 <h3 className="mt-6 text-gray-400">Nota</h3>
-                <Box
-                  sx={{
-                    width: 200,
-                    display: 'flex',
-                    alignItems: 'center',
-                  }}
-                >
+                <div className="flex w-52 items-center">
                   <Rating
                     name="hover-feedback"
                     value={value}
@@ -110,19 +104,36 @@ export function Feedback() {
                       {labels[hover !== -1 ? hover : value]}
                     </Box>
                   )}
-                </Box>
+                </div>
               </div>
               <div className="mt-7 flex items-center justify-center gap-8">
-                <Button title={'comentar'} onClick={handleSubmitForm} />
-                <Button title={'Excluir'} isRed={true} />
+                <Button
+                  title={'comentar'}
+                  isCreate
+                  onClick={handleSubmitForm}
+                />
+                <Button title={'Excluir'} isRed />
               </div>
             </fieldset>
-            <fieldset className="flex w-4/12 min-w-[225px] flex-col items-center gap-9">
-              <img
-                className="rounded-xl "
-                src="#"
-                alt="imagem do filme titanic"
-              />
+            <fieldset className="flex h-hv-calc w-full min-w-[225px] max-w-[450px] flex-col gap-9 overflow-y-auto">
+              <div>
+                <h2 className="text-3xl text-white">
+                  Filme: {movie.title && movie.title}
+                </h2>
+                <p className="text-justify">
+                  {movie.image && (
+                    <img
+                      className="mb-4 mt-6 inline-flex rounded-xl"
+                      src={`${api.defaults.baseURL}/files/${movie.image}`}
+                      alt={`imagem do filme ${movie.title}`}
+                    />
+                  )}
+                  <span>
+                    sinopse: <br />
+                  </span>
+                  {movie.sinopse && movie.sinopse}
+                </p>
+              </div>
             </fieldset>
           </form>
         </div>
