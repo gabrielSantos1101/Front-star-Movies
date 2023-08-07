@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
+import { Loader } from '../components/Loader'
 import { TextButton } from '../components/textButton'
 import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
 
 export function SignUp() {
-  const { token, handleErrorFetchData } = useAuth()
+  const { token, handleErrorFetchData, loading } = useAuth()
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -68,6 +69,11 @@ export function SignUp() {
 
   return (
     <main className="flex h-full w-full">
+      {loading && (
+        <div className="absolute left-0 top-0 z-10 grid h-screen w-screen scale-110 place-items-center bg-BG-defocus backdrop-blur-[2px]">
+          <Loader />
+        </div>
+      )}
       <aside className=" flex shrink grow basis-0 flex-col justify-between self-stretch border-zinc-800 bg-BG-800 p-10">
         <div className="inline-flex items-center justify-start gap-2">
           <h2 className="flex gap-1 text-[25px] font-bold leading-7 text-white">

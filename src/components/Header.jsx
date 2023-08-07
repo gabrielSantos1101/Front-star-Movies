@@ -6,7 +6,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
-import { Input } from './Input'
 import { User } from './User'
 
 export function Header() {
@@ -61,9 +60,6 @@ export function Header() {
           <Popcorn /> Star Movies
         </h2>
       </Link>
-      <div className="w-2/3">
-        <Input Type={'search'} placeholder={'Pesquise por comentário'} />
-      </div>
       <button onClick={(e) => handleClick(e)}>
         <div className="pointer-events-none">
           <User url={image} />

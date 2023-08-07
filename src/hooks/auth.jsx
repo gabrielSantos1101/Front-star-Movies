@@ -7,8 +7,10 @@ export const AuthContext = createContext({})
 export function AuthProvider({ children }) {
   const [data, setData] = useState({})
   const [imageUpdated, setImageUpdated] = useState('')
+  const [loading, setLoading] = useState(false)
 
   async function signIn({ email, password }) {
+    setLoading(true)
     try {
       const response = await api.post('/user/session', { email, password })
       const { token } = response.data
@@ -17,9 +19,11 @@ export function AuthProvider({ children }) {
 
       setData({ token })
     } catch (err) {
-      console.log(err)
+      setLoading(false)
+      console.error(err)
       toast.error('Usuário ou senha inválidos')
     }
+    setLoading(false)
   }
 
   function signOut() {
@@ -54,6 +58,7 @@ export function AuthProvider({ children }) {
       value={{
         signIn,
         signOut,
+        loading,
         token: data.token,
         handleErrorFetchData,
         imageUpdated,
