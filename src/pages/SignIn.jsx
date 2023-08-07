@@ -1,5 +1,5 @@
 import { Popcorn } from 'phosphor-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button } from '../components/Button'
 import { Input } from '../components/Input'
 import { TextButton } from '../components/textButton'
@@ -9,10 +9,18 @@ export function SignIn() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { signIn } = useAuth()
+  const [loading, setLoading] = useState(false)
 
   function handleSignIn() {
     signIn({ email, password })
   }
+
+  useEffect(() => {
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+    }, 2000)
+  }, [])
 
   return (
     <div className="flex h-full w-full">
@@ -62,6 +70,7 @@ export function SignIn() {
 
             <Input
               placeholder={'senha'}
+              type={'password'}
               onChange={(e) => setPassword(e.target.value)}
             />
 

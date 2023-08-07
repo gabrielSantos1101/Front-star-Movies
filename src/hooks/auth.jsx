@@ -42,11 +42,12 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const token = localStorage.getItem('token')
 
-    if (token) {
-      // eslint-disable-next-line dot-notation
-      api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-      setData({ token })
-    }
+    api.interceptors.request.use((config) => {
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`
+      }
+      return config
+    })
   }, [])
 
   return (
