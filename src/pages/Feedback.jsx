@@ -78,7 +78,7 @@ export function Feedback() {
       }
     }
     getData()
-  }, [handleErrorFetchData, movie_id, setValue])
+  }, [handleErrorFetchData, token, movie_id, setValue])
 
   return (
     <div className="h-full w-full bg-BG-900">
@@ -127,7 +127,7 @@ export function Feedback() {
                 <Button title={'Excluir'} isRed />
               </div>
             </fieldset>
-            <fieldset className="flex h-hv-calc w-full min-w-[225px] max-w-[450px] flex-col gap-9 overflow-y-auto">
+            <fieldset className="flex h-hv-section w-full min-w-[225px] max-w-[450px] flex-col gap-9 overflow-y-auto">
               <div>
                 <h2 className="text-3xl text-white">
                   Filme: {movie.title && movie.title}
@@ -136,7 +136,7 @@ export function Feedback() {
                   {movie.image && (
                     <img
                       className="mb-4 mt-6 inline-flex rounded-xl"
-                      src={`${api.defaults.baseURL}/files/${movie.image}`}
+                      src={`${movie.image}`}
                       alt={`imagem do filme ${movie.title}`}
                     />
                   )}

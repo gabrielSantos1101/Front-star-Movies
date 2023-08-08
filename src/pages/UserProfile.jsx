@@ -37,6 +37,7 @@ export function UserProfile() {
             setTiktok(response.data.tiktok_url)
             setThreads(response.data.threads_url)
             setImage(response.data.image)
+            console.log(response.data.image)
             setName(response.data.name)
           })
       } catch (err) {

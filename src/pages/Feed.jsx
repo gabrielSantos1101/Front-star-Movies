@@ -105,7 +105,7 @@ export function Feed() {
             <div className="flex items-start gap-8">
               <img
                 className="w-64 rounded-xl"
-                src={`${api.defaults.baseURL}/files/${movie.image}`}
+                src={`${movie.image}`}
                 alt="imagem do filme titanic"
               />
               <div>
