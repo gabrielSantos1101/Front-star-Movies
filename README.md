@@ -38,7 +38,7 @@
   </ol>
 </details>
 
-
+---
 
 ## Sobre o Projeto
 
@@ -62,13 +62,13 @@ Acompanhe seus filmes favoritos
 
 ### Tecnologias
 
-[![- Vue](.github/vue.svg)](https://vuejs.org/)
-[![- React](.github/vue.svg)](https://react.dev/)
-[![- Tailwind](.github/vue.svg)](https://tailwindcss.com/)
+  - [Vite](https://vitejs.dev/)
+  - [React](https://react.dev/)
+  - [Tailwind](https://tailwindcss.com/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+---
 
 ## Getting Started
 
@@ -107,7 +107,7 @@ _Siga os passos a seguir para rodar o projeto localmente._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+---
 
 ## Server
 
@@ -116,6 +116,7 @@ _Siga os passos a seguir para rodar o projeto localmente._
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+---
 
 ## Contribua
 
@@ -132,7 +133,7 @@ Não se esqueça de dar uma estrela ao projeto! Obrigado novamente!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+---
 
 ## License
 
@@ -148,7 +149,7 @@ Project Link: [web-star-movies](https://web-star-movies.vercel.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+---
 
 ## Contribuidores
 
