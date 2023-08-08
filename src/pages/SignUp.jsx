@@ -122,7 +122,7 @@ export function SignUp() {
             onChange={(e) => setEmail(e.target.value)}
           />
           <Input
-            placeholder={'senha'}
+            placeholder={'senha min: 8 caracteres'}
             type={'password'}
             minlength="8"
             onChange={(e) => setPassword(e.target.value)}

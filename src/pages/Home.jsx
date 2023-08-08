@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Button } from '../components/Button'
+import { Loader } from '../components/Loader'
 import { Movie } from '../components/Movie'
 import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
 
 export function Home() {
   const { handleErrorFetchData, token } = useAuth()
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState(null)
   const navigate = useNavigate()
 
   function handleClick() {
@@ -35,6 +36,15 @@ export function Home() {
     }
     getData()
   }, [token, handleErrorFetchData])
+
+  if (movies === null) {
+    return (
+      <main className="relative grid h-screen w-full place-items-center pb-36">
+        <Loader />
+      </main>
+    )
+  }
+
   return (
     <div className="h-full w-full bg-BG-900">
       <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">

@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button } from '../components/Button'
 import { Comment } from '../components/Comment'
+import { Loader } from '../components/Loader'
 import { TextButton } from '../components/textButton'
 import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
@@ -69,6 +70,14 @@ export function Feed() {
     }
     getData()
   }, [token, navigate, handleErrorFetchData, movie_id, setValue])
+
+  if (!movie.image) {
+    return (
+      <main className="relative grid h-screen w-full place-items-center pb-36">
+        <Loader />
+      </main>
+    )
+  }
 
   return (
     <main className="relative grid h-hv-calc w-full p-16">

@@ -29,6 +29,11 @@ export function CreateFilm() {
   }
 
   async function handleSubmit() {
+    if (age.length > 4) {
+      toast.warning('Por favor só 4 numeros')
+      return
+    }
+
     const form = new FormData()
 
     form.append('title', title)
@@ -46,7 +51,6 @@ export function CreateFilm() {
       navigate(`/`)
     } catch (err) {
       handleErrorFetchData(err)
-      navigate(`/`)
     }
   }
 
@@ -72,6 +76,7 @@ export function CreateFilm() {
                   Type={'number'}
                   value={age}
                   onChange={(e) => setAge(e.target.value)}
+                  max={9999}
                 />
               </div>
               <label className="text-gray-400">
@@ -83,8 +88,8 @@ export function CreateFilm() {
                 />
               </label>
               <div className="mt-7 flex items-center justify-center gap-8">
-                <Button isCreate title={'Criar filme'} onClick={handleSubmit} />
                 <Button title={'cancelar'} isRed={true} to={'/'} />
+                <Button isCreate title={'Criar filme'} onClick={handleSubmit} />
               </div>
             </section>
             <aside className="flex w-4/12 min-w-[225px] flex-col items-center gap-9">

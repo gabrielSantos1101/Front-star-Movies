@@ -131,12 +131,12 @@ export function Profile() {
                   </div>
                 </div>
                 <div className="mx-auto me-auto mt-28 flex w-fit gap-5">
+                  <Button title={'Cancelar'} isRed onClick={handleBack} />
                   <Button
                     title={'Salvar Alterações'}
                     isAdd
                     onClick={() => handleSubmit()}
                   />
-                  <Button title={'Cancelar'} isRed onClick={handleBack} />
                 </div>
               </fieldset>
             </div>

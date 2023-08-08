@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { Button } from '../components/Button'
+import { Loader } from '../components/Loader'
 import { Textarea } from '../components/Textarea'
 import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
@@ -80,9 +81,17 @@ export function Feedback() {
     getData()
   }, [handleErrorFetchData, token, movie_id, setValue])
 
+  if (!movie.image) {
+    return (
+      <main className="relative grid h-screen w-full place-items-center pb-36">
+        <Loader />
+      </main>
+    )
+  }
+
   return (
     <div className="h-full w-full bg-BG-900">
-      <main className="relative grid  w-full p-16">
+      <main className="relative grid h-hv-calc  w-full p-16">
         <div className="mx-auto w-full max-w-7xl">
           <h1 className="text-3xl text-gray-200">Cadastrar comentário</h1>
           <form className="mt-6 flex justify-between gap-32">
@@ -119,12 +128,12 @@ export function Feedback() {
                 </div>
               </div>
               <div className="mt-7 flex items-center justify-center gap-8">
+                <Button title={'Excluir'} isRed />
                 <Button
                   title={'comentar'}
                   isCreate
                   onClick={handleSubmitForm}
                 />
-                <Button title={'Excluir'} isRed />
               </div>
             </fieldset>
             <fieldset className="flex h-hv-section w-full min-w-[225px] max-w-[450px] flex-col gap-9 overflow-y-auto">

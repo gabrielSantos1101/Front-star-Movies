@@ -1,5 +1,5 @@
-import { Trash } from 'phosphor-react'
-import { useNavigate } from 'react-router-dom'
+import { Trash, UserCircle } from 'phosphor-react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/auth'
 import { api } from '../services/api'
 
@@ -10,6 +10,7 @@ export function Comment({
   id,
   user,
   image,
+  email,
 }) {
   const { handleErrorFetchData, token } = useAuth()
   const navigate = useNavigate()
@@ -38,11 +39,19 @@ export function Comment({
           <Trash />
         </button>
       ) : null}
-      <img
-        src={`${image}`}
-        alt="imagem de perfil do usuario"
-        className="h-12 w-12 rounded-xl"
-      />
+      {image ? (
+        <Link to={`/user/${email}`}>
+          <img
+            src={`${image}`}
+            alt="imagem de perfil do usuario"
+            className="h-12 w-12 rounded-xl object-cover"
+          />
+        </Link>
+      ) : (
+        <Link to={`/user/${email}`}>
+          <UserCircle className="h-12 w-12 rounded-full text-white" />
+        </Link>
+      )}
       <div className=" min-h-[126px] w-11/12 rounded-lg rounded-ss-none bg-BG-700 p-6 pr-14">
         <span className="text-white">{user}</span>
         <p className="mt-4 max-h-96 overflow-auto text-justify text-gray-200">
