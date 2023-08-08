@@ -72,7 +72,7 @@ export function Movie({
           <p className="mt-4 max-h-96 overflow-auto text-justify text-gray-200">
             {limitText(value, 260)}
           </p>
-          <span className="mt-4 self-end text-sm text-white">- {user}</span>
+          <span className="mt-2 self-end text-sm text-white">- {user}</span>
         </div>
       </div>
     </div>

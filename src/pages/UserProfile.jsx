@@ -61,43 +61,51 @@ export function UserProfile() {
             <h1 className="text-4xl font-bold text-gray-100">{name}</h1>
           </div>
           <div className="flex h-fit flex-col justify-center gap-2 px-4 text-base text-gray-200">
-            <a
-              href={`http://instagram.com/${insta}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 hover:text-gray-300"
-            >
-              <InstagramLogo size={32} /> @{insta}
-            </a>
-            <a
-              href={`http://tiktok.com/${tiktok}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 hover:text-gray-300"
-            >
-              <TiktokLogo size={32} /> @{tiktok}
-            </a>
-            <a
-              href={`http://twitter.com/${twitter}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 hover:text-gray-300"
-            >
-              <TwitterLogo size={32} /> @{twitter}
-            </a>
-            <a
-              href={`http://threads.net/${threads}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 hover:text-gray-300"
-            >
-              <img
-                src={ThreadsLogo}
-                alt="Thraeds Logo"
-                className="w-6 brightness-75"
-              />
-              @{threads}
-            </a>
+            {insta && (
+              <a
+                href={`http://instagram.com/${insta}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-gray-300"
+              >
+                <InstagramLogo size={32} /> @{insta}
+              </a>
+            )}
+            {tiktok && (
+              <a
+                href={`http://tiktok.com/${tiktok}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-gray-300"
+              >
+                <TiktokLogo size={32} /> @{tiktok}
+              </a>
+            )}
+            {twitter && (
+              <a
+                href={`http://twitter.com/${twitter}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-gray-300"
+              >
+                <TwitterLogo size={32} /> @{twitter}
+              </a>
+            )}
+            {threads && (
+              <a
+                href={`http://threads.net/${threads}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-1 hover:text-gray-300"
+              >
+                <img
+                  src={ThreadsLogo}
+                  alt="Thraeds Logo"
+                  className="w-6 brightness-75"
+                />
+                @{threads}
+              </a>
+            )}
           </div>
         </section>
       </main>
