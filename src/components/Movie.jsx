@@ -70,7 +70,7 @@ export function Movie({
         </h3>
         <div className="flex h-full w-full flex-col items-start justify-between">
           <p className="mt-4 max-h-96 overflow-auto text-justify text-gray-200">
-            {limitText(value, 260)}
+            {limitText(value, 240)}
           </p>
           <span className="mt-1 self-end text-sm text-white">- {user}</span>
         </div>

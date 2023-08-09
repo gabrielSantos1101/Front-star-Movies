@@ -99,11 +99,13 @@ export function UserProfile() {
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 hover:text-gray-300"
               >
-                <img
-                  src={ThreadsLogo}
-                  alt="Thraeds Logo"
-                  className="w-6 brightness-75"
-                />
+                <div className="w-8">
+                  <img
+                    src={ThreadsLogo}
+                    alt="Thraeds Logo"
+                    className="w-6 brightness-75"
+                  />
+                </div>
                 @{threads}
               </a>
             )}

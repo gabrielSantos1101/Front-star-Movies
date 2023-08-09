@@ -19,7 +19,7 @@ export function User({ url, rounded = true, xl, to }) {
           alt="imagem de avatar"
           className={`${xl ? 'h-32 w-32' : ''} ${
             rounded ? 'rounded-lg' : 'rounded-xl'
-          } h-12 w-12`}
+          } h-12 w-12 object-cover`}
         />
       ) : url ? (
         <img
@@ -27,7 +27,7 @@ export function User({ url, rounded = true, xl, to }) {
           alt="imagem de avatar"
           className={`${xl ? 'h-32 w-32' : ''} ${
             rounded ? 'rounded-full' : 'rounded-xl'
-          } h-12 w-12`}
+          } h-12 w-12 object-cover`}
         />
       ) : (
         <UserCircle
