@@ -118,7 +118,7 @@ export function Feed() {
                 alt="imagem do filme titanic"
               />
               <div>
-                <h1 className="text-4xl text-white">Fime: {movie.title}</h1>
+                <h1 className="text-4xl text-white">Filme: {movie.title}</h1>
                 <div className="mx-auto mt-5 flex w-52 flex-col items-center">
                   <Rating
                     name="hover-feedback"
