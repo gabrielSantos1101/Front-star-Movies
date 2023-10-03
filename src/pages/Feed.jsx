@@ -80,7 +80,7 @@ export function Feed() {
   }
 
   return (
-    <main className="relative grid h-hv-calc w-full p-16">
+    <main className="relative grid h-hv-calc w-full overflow-y-auto p-16 lg:overflow-hidden">
       <div className="absolute left-8 top-8">
         <TextButton title={'< Voltar'} istext onClick={() => navigate(-1)} />
       </div>
@@ -94,8 +94,8 @@ export function Feed() {
             onClick={() => navigate(`/comment/${movie_id}`)}
           />
         </div>
-        <div className="mt-6 flex justify-between gap-32">
-          <section className="flex h-hv-section w-full flex-col gap-6 overflow-y-auto">
+        <div className="mt-6 flex flex-col-reverse gap-32 overflow-y-auto lg:flex-row lg:justify-between">
+          <section className="flex w-full flex-col gap-6 overflow-y-auto lg:h-hv-section">
             {comments.length > 0 &&
               comments.map((comment) => (
                 <Comment
@@ -110,7 +110,7 @@ export function Feed() {
                 />
               ))}
           </section>
-          <aside className="flex h-hv-section w-full min-w-[225px] flex-col gap-9 overflow-y-auto">
+          <aside className="flex w-full min-w-[225px] flex-col gap-9 overflow-y-auto lg:h-hv-section">
             <div className="flex items-start gap-8">
               <img
                 className="w-64 rounded-xl"

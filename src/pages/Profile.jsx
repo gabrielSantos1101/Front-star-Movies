@@ -83,7 +83,7 @@ export function Profile() {
       <main className="relative mx-auto grid h-hv-calc max-w-7xl overflow-y-auto p-16">
         <div>
           <h1 className="text-3xl text-gray-200">Editar usuário</h1>
-          <form className="mt-24 flex justify-between gap-32">
+          <form className="mt-24 flex flex-col-reverse justify-between gap-32 lg:flex-row">
             <div className="w-full">
               <Input
                 label={'nome completo'}
@@ -140,7 +140,7 @@ export function Profile() {
                 </div>
               </fieldset>
             </div>
-            <div className="flex w-4/12 flex-col items-center gap-9">
+            <div className="mx-auto flex w-2/4 flex-col items-center gap-9 lg:mx-0 lg:w-4/12">
               <div className="relative overflow-hidden">
                 <h3 className="text-gray-400">Avatar</h3>
                 <label
