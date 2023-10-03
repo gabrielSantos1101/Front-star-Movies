@@ -68,13 +68,13 @@ export function SignUp() {
   }
 
   return (
-    <main className="flex h-full w-full">
+    <main className="flex h-full w-full grow flex-col lg:flex-row">
       {loading && (
         <div className="absolute left-0 top-0 z-10 grid h-screen w-screen scale-110 place-items-center bg-BG-defocus backdrop-blur-[2px]">
           <Loader />
         </div>
       )}
-      <aside className=" flex shrink grow basis-0 flex-col justify-between self-stretch border-zinc-800 bg-BG-800 p-10">
+      <aside className=" flex max-h-80 shrink grow basis-0 flex-col justify-between self-stretch border-zinc-800 bg-BG-800 p-10 lg:max-h-none">
         <div className="inline-flex items-center justify-start gap-2">
           <h2 className="flex gap-1 text-[25px] font-bold leading-7 text-white">
             <Popcorn /> Star Movies
@@ -96,7 +96,7 @@ export function SignUp() {
         </div>
       </aside>
 
-      <section className="relative flex shrink grow basis-0 flex-col items-center justify-center gap-6 self-stretch bg-BG-900">
+      <section className="flex shrink grow basis-0 flex-col items-center justify-center gap-6 self-stretch bg-BG-900 lg:relative">
         <div className="absolute right-20 top-11">
           <TextButton title={'Login'} onClick={() => navigate(-1)} />
         </div>

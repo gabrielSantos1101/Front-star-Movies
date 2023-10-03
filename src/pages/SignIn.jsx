@@ -16,13 +16,13 @@ export function SignIn() {
   }
 
   return (
-    <div className="flex h-full w-full">
+    <div className="flex h-full w-full grow flex-col lg:flex-row">
       {loading && (
         <div className="absolute left-0 top-0 z-10 grid h-screen w-screen scale-110 place-items-center bg-BG-defocus backdrop-blur-[2px]">
           <Loader />
         </div>
       )}
-      <div className="flex shrink grow basis-0 flex-col justify-between self-stretch border-zinc-800 bg-BG-800 p-10">
+      <div className="flex max-h-80 grow basis-0 flex-col justify-between self-stretch border-zinc-800 bg-BG-800 p-10 lg:max-h-none lg:shrink">
         <div className="inline-flex items-center justify-start gap-2">
           <h2 className="flex gap-1 text-[25px] font-bold leading-7 text-white">
             <Popcorn /> Star Movies
@@ -44,7 +44,7 @@ export function SignIn() {
         </div>
       </div>
 
-      <div className="relative flex shrink grow basis-0 flex-col items-center justify-center gap-6 self-stretch bg-BG-900">
+      <div className="flex shrink grow basis-0 flex-col items-center justify-center gap-6 self-stretch bg-BG-900 lg:relative">
         <div className="absolute right-12 top-10">
           <TextButton title={'Cadastre-se'} to={'/register'} />
         </div>
