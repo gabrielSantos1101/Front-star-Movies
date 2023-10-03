@@ -21,9 +21,6 @@ export function Movie({
   const [isPossibleDelete, setIsPossibleDelete] = useState(false)
   const { handleErrorFetchData } = useAuth()
 
-  function limitText(text, maxCharacters) {
-    return text.slice(0, maxCharacters) + '...'
-  }
   const { sub } = jwt_decode(token)
 
   function onClickHandler() {
@@ -51,7 +48,7 @@ export function Movie({
 
   return (
     <div
-      className="relative flex w-[49%] cursor-pointer flex-col gap-4 hover:brightness-90"
+      className="relative flex w-full cursor-pointer flex-col gap-4 hover:brightness-90 lg:w-[48%] xl:w-[49%]"
       onClick={onClickHandler}
     >
       {isPossibleDelete ? (
@@ -69,8 +66,8 @@ export function Movie({
           {film} - {age}
         </h3>
         <div className="flex h-full w-full flex-col items-start justify-between">
-          <p className="mt-4 max-h-96 overflow-auto text-justify text-gray-200">
-            {limitText(value, 240)}
+          <p className="mt-4 line-clamp-4 max-h-96 overflow-hidden text-justify text-gray-200">
+            {value}
           </p>
           <span className="mt-1 self-end text-sm text-white">- {user}</span>
         </div>

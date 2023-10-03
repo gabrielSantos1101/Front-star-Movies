@@ -49,8 +49,10 @@ export function Home() {
     <div className="h-full w-full bg-BG-900">
       <main className="relative grid h-hv-calc w-full overflow-y-auto p-16">
         <div className="mx-auto w-full max-w-7xl">
-          <div className="flex gap-4">
-            <h1 className="text-3xl text-gray-200">lista de filmes</h1>
+          <div className="flex items-center gap-4">
+            <h1 className="text-xl text-gray-200 lg:text-3xl">
+              lista de filmes
+            </h1>
             <Button isAdd title={'Adicionar filme'} onClick={handleClick} />
           </div>
 
